@@ -21,7 +21,7 @@ root.canvas.get_tk_widget().pack(side=tkinter.BOTTOM, fill=tkinter.BOTH, expand=
 
 #para definir las etiquetas
 labelfont = tkFont.Font(size=20)
-labelNumSim = Label(root, text='Texto aqui',fg='black',background='white')
+labelNumSim = Label(root, text='Numero de simulaciones:',fg='black',background='white')
 labelNumSim.config(font=labelfont)
 labelNumSim.pack()
 
