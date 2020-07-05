@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from matplotlib.collections import LineCollection
 import random
 from math import pi,cos,sin, trunc
+import numpy as np
 
 #variables para el programa
 simulaciones = 10000
@@ -52,4 +53,41 @@ def generateFigure(simulaciones, longitudAguja, numCeldas, distanciaCeldas):
 
     ax.set_title('Simulaciones: {} \nColisiones: {} \nAproximacion de pi: {} '.format(simulaciones, agujasCortan, myPi))
 
+    return fig
+
+def simSimplificada(repeticiones):
+    d,l = 0.75, 0.25
+    count = 0
+    for i in range(repeticiones):
+        x = random.uniform(0,d)
+        y = l * cos( random.uniform(0,pi/2))
+        if y > x:
+            count += 1
+    return ((2*l*repeticiones)/(d*count))
+
+#Function that returns an array with diferent sizes from 100 to max
+def getSizes(max=100000):
+    x, n, i = [] , 100, 1
+    x.append(100)
+    while(n<max):
+        n += (10*i)
+        i += 1
+        x.append(n)
+    x.append(max)
+    return x
+
+def getMonteCarloImage():
+    sizes = getSizes(100000)
+    results = []
+    for size in sizes:
+        results.append(simSimplificada(size))
+    sizeSample = np.array(sizes)
+    values = np.array(results)
+
+    plt.close('all')
+    fig = plt.figure()
+    ax = fig.add_subplot()
+    ax.plot(sizeSample, values, linewidth=1, color='r')
+    ax.axhline(y=3.141592653, color='blue', linestyle='-')
+    ax.autoscale()
     return fig
