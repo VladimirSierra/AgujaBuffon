@@ -4,12 +4,6 @@ import random
 from math import pi,cos,sin, trunc
 import numpy as np
 
-#variables para el programa
-simulaciones = 10000
-agujasCortan = 0
-longitudAguja = 0.75
-numCeldas = 100
-distanciaCeldas = 1
 
 #funcion que genera vectores de longitud l
 def vectorL(l=0.75, d=1, rendijas=10):
@@ -18,18 +12,20 @@ def vectorL(l=0.75, d=1, rendijas=10):
     x2,y2 = x1+l*cos(tetha), y1 + l*sin(tetha)
     return [[x1,y1],[x2,y2]]
 
+#Metodo que toma las coordenadas x de un vector y regresa true si el vector intersecta una linea
 def agujaIntersecta(x1,x2,distanciaCeldas):
     rendija1 = trunc(x1/distanciaCeldas)
     rendija2 = trunc(x2/distanciaCeldas)
     return rendija1 != rendija2
 
+
+#Funcion para generar figura de la latiz con los lanzamientos indicados
 def generateFigure(simulaciones, longitudAguja, numCeldas, distanciaCeldas):
     agujasCortan = 0
 
     agujas = []
     for i in range(simulaciones):
         agujas.append(vectorL(longitudAguja, distanciaCeldas, numCeldas))
-
 
     linesRendijas = []
     for i in range(numCeldas+1):
@@ -50,11 +46,11 @@ def generateFigure(simulaciones, longitudAguja, numCeldas, distanciaCeldas):
             agujasCortan += 1
 
     myPi = (2*longitudAguja*simulaciones) / (distanciaCeldas*agujasCortan)
-
     ax.set_title('Simulaciones: {} \nColisiones: {} \nAproximacion de pi: {} '.format(simulaciones, agujasCortan, myPi))
-
     return fig
 
+
+#Funcion que realiza una simulacion simplificada del experimento, se repite las veces indicadas.
 def simSimplificada(repeticiones):
     d,l = 0.75, 0.25
     count = 0
@@ -65,7 +61,8 @@ def simSimplificada(repeticiones):
             count += 1
     return ((2*l*repeticiones)/(d*count))
 
-#Function that returns an array with diferent sizes from 100 to max
+
+#Funcion que regresa un arreglo con valores entre 100-max
 def getSizes(max=100000):
     x, n, i = [] , 100, 1
     x.append(100)
@@ -76,6 +73,8 @@ def getSizes(max=100000):
     x.append(max)
     return x
 
+
+#Funcion que regresa una imagen con la aproximacion de pi ocupando monteCarlo
 def getMonteCarloImage():
     sizes = getSizes(100000)
     results = []
