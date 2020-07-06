@@ -8,4 +8,4 @@ También se incluye la gráfica de la aproximación a pi al utilizar el método 
 Para ejecutar el proyecto basta ejecutar el archivo Main.py (ambos archivos deben estar en el mismo directorio).
 El comando de ejecución es:
 
-    > > > python Main.py
+    > python Main.py
