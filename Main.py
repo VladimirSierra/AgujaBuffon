@@ -13,7 +13,7 @@ class AppBuffon:
     def __init__(self):
         self.root = tkinter.Tk()
         self.root.wm_title("Buffon nedle")
-        self.root.geometry("1050x1050")
+        self.root.geometry("1000x1000")
         self.root.configure(background='white')
 
         fig = buffon.generateFigure(1000, 0.75, 10, 1)
