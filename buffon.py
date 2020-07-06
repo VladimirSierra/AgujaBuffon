@@ -5,21 +5,21 @@ from math import pi,cos,sin, trunc
 import numpy as np
 
 
-#funcion que genera vectores de longitud l
+# Funcion que genera vectores de longitud l
 def vectorL(l=0.75, d=1, rendijas=10):
     x1,y1 = random.uniform(0,d*rendijas), random.uniform(0,d*rendijas)
     tetha = random.uniform(0,2*pi)
     x2,y2 = x1+l*cos(tetha), y1 + l*sin(tetha)
     return [[x1,y1],[x2,y2]]
 
-#Metodo que toma las coordenadas x de un vector y regresa true si el vector intersecta una linea
+#M Funcion que toma las coordenadas x de un vector y regresa true si el vector intersecta una linea
 def agujaIntersecta(x1,x2,distanciaCeldas):
     rendija1 = trunc(x1/distanciaCeldas)
     rendija2 = trunc(x2/distanciaCeldas)
     return rendija1 != rendija2
 
 
-#Funcion para generar figura de la latiz con los lanzamientos indicados
+# Funcion para generar figura de la latiz con los lanzamientos indicados
 def generateFigure(simulaciones, longitudAguja, numCeldas, distanciaCeldas):
     agujasCortan = 0
 
@@ -50,7 +50,7 @@ def generateFigure(simulaciones, longitudAguja, numCeldas, distanciaCeldas):
     return fig
 
 
-#Funcion que realiza una simulacion simplificada del experimento, se repite las veces indicadas.
+# Funcion que realiza una simulacion simplificada del experimento, se repite las veces indicadas.
 def simSimplificada(repeticiones):
     d,l = 0.75, 0.25
     count = 0
@@ -62,7 +62,7 @@ def simSimplificada(repeticiones):
     return ((2*l*repeticiones)/(d*count))
 
 
-#Funcion que regresa un arreglo con valores entre 100-max
+# Funcion que regresa un arreglo con valores entre 100-max
 def getSizes(max=100000):
     x, n, i = [] , 100, 1
     x.append(100)
@@ -74,7 +74,7 @@ def getSizes(max=100000):
     return x
 
 
-#Funcion que regresa una imagen con la aproximacion de pi ocupando monteCarlo
+# Funcion que regresa una imagen con la aproximacion de pi ocupando monteCarlo
 def getMonteCarloImage():
     sizes = getSizes(100000)
     results = []
